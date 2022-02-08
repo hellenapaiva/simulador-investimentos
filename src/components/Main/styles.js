@@ -21,14 +21,13 @@ export const Container = styled.div`
 `;
 
 export const ContainerSimulator = styled.div`
-
     display: flex;
     gap: 24px;
    
 
-    @media (max-width: 530px){
+    @media (max-width: 670px){
         display: flex;
-        flex-direction: column;     
+          
         background-color: #efefef;
         width: 100%;       
        align-items: center;

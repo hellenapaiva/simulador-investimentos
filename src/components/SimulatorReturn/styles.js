@@ -15,13 +15,15 @@ export const ContainerRend = styled.div`
     flex-direction: column;
     width: 200px;
     margin-right: 20px;  
+    gap: 15px;
     
 `;
 
 export const ContainerIndex = styled.div`
     display: flex;
     flex-direction: column;
-    width: 200px;
+      width: 200px;
+    gap: 15px;
    
       
 `;
@@ -103,7 +105,7 @@ export const Span = styled.span`
 export const Error = styled.div`
     color: red;
     font-size: 12px;
-    margin-top: -15px;
+    margin-top: -30px;
     margin-bottom: 20px;
 `;
 

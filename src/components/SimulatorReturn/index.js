@@ -5,7 +5,21 @@ import * as yup from "yup";
 
 import { RiErrorWarningLine } from 'react-icons/ri'
 
-import { ContainerButtons, Container, ContainerSub, ButtonClick, Input, Span, ContainerIndex, ContainerRend, ButtonSimular, ButtonToggle, FormContainer, Error, WrapResult } from './styles';
+import {
+    ContainerButtons,
+    Container,
+    ContainerSub,
+    ButtonClick,
+    Input,
+    Span,
+    ContainerIndex,
+    ContainerRend,
+    ButtonSimular,
+    ButtonToggle,
+    FormContainer,
+    Error,
+    WrapResult
+} from './styles';
 
 import { api } from '../../services/api';
 import Resultado from '../Resultado';
@@ -31,6 +45,10 @@ export default function Simulator() {
     const [activeRend, setActiveRend] = useState(typesRend[0].value);
     const [activeIndex, setActiveIndex] = useState(typesIndex[0].value);
     const [showResult, setShowResult] = useState(false);
+    const [monthContribution, setMonthContribution] = useState('');
+    const [initialContribution, setInitialContribution] = useState('');
+    const [deadline, setDeadline] = useState('');
+    const [profitability, setProfitability] = useState('');
 
     const [indicadores, setIndicadores] = useState([]);
     const [simulators, setSimulators] = useState({});
@@ -60,10 +78,19 @@ export default function Simulator() {
         setSimulators(simulators.data[0]);
     }
 
-    function handleSimulate(e) {
+    function handleSimulate() {
         setSimulators({ ...simulators })
         setShowResult(true);
         getSimulators();
+    }
+
+    function handleClear(e) {
+        e.preventDefault();
+        setMonthContribution('');
+        setInitialContribution('');
+        setDeadline('');
+        setProfitability('');
+        setShowResult(false);
     }
 
     return (
@@ -87,6 +114,8 @@ export default function Simulator() {
                     <Input
                         name="initialAporte"
                         {...register('initialAporte')}
+                        value={initialContribution}
+                        onChange={(e) => setInitialContribution(e.target.value)}
                     />
                     <Error>{errors.initialAporte?.type === 'required' && "O prazo não pode ser vazio"}</Error>
                     <Error>{errors.initialAporte?.type === 'typeError' && "O prazo deve ser um número"}</Error>
@@ -96,6 +125,8 @@ export default function Simulator() {
                     <Input
                         name="deadline"
                         {...register('deadline')}
+                        value={deadline}
+                        onChange={(e) => setDeadline(e.target.value)}
                     />
                     <Error>{errors.deadline?.type === 'required' && "O prazo não pode ser vazio"}</Error>
                     <Error>{errors.deadline?.type === 'typeError' && "O prazo deve ser um número"}</Error>
@@ -105,7 +136,8 @@ export default function Simulator() {
                     {indicadores.filter(value => (value.nome === 'ipca')).map(value => (
                         <Span>{value.valor}%</Span>
                     ))}
-                    <ButtonClick
+                    <ButtonClick type="submit"
+                        onClick={handleClear}
                     >
                         Limpar campos
                     </ButtonClick>
@@ -125,14 +157,23 @@ export default function Simulator() {
                     <label>
                         Aporte Mensal
                     </label>
-                    <Input {...register('monthly')} />
+                    <Input
+                        name="monthly"
+                        {...register('monthly')}
+                        value={monthContribution}
+                        onChange={(e) => setMonthContribution(e.target.value)}
+
+                    />
                     <Error>{errors.initialAporte?.type === 'required' && "O aporte não pode ser vazio"}</Error>
                     <Error>{errors.initialAporte?.type === 'typeError' && "O aporte deve ser um número"}</Error>
                     <label>
                         Rentabilidade
                     </label>
                     <Input
+                        name="profitability"
                         {...register('profitability')}
+                        value={profitability}
+                        onChange={(e) => setProfitability(e.target.value)}
                     />
                     <Error>{errors.initialAporte?.type === 'required' && "A rentabilidade não pode ser vazio"}</Error>
                     <Error>{errors.initialAporte?.type === 'typeError' && "A rentabilidade deve ser um número"}</Error>
