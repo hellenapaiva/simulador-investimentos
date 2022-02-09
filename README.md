@@ -9,7 +9,7 @@ Essa aplicação consiste em um simulador de investimentos, utilizando javascrip
 
 Para execução local, faça um clone da aplicação, após isso, utilize o comando npm install e em em seguida npm start ou yarn start.
 Executa o aplicativo no modo de desenvolvimento. 
-Em: [http://localhost:3000](http://localhost:3000) para visualizá-lo em seu navegador.
+Em: [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.
 
 o projeto deve ser rodado juntamente com API fake, a mesma contém no link do desafio.
 
