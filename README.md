@@ -2,7 +2,7 @@
 
 ## Ferramentas utilizadas
 
-Essa aplicação consiste em um simulador de investimentos, utilizando javascript e reactjs e estilização com styled-components. Além do uso de bibliotecas como yup e react-hooks-form para validação do formulário e apexcharts para criação do gráfico.
+Essa aplicação consiste em um simulador de investimentos, utilizando javascript e reactjs e estilização com styled-components. Além do uso de bibliotecas como yup e react-hooks-form para validação do formulário e apexcharts para implementação do gráfico.
 
 
 ## Execução
