@@ -15,5 +15,6 @@ o projeto deve ser rodado juntamente com API fake, a mesma contém no link do de
 
 ## O projeto
 
-Para fazer simulações preencha os campos (inputs) com os dados desejados e clique em "Simular"
+Para fazer simulações preencha os campos (inputs) com os dados desejados e clique em "Simular". 
+Para iniciar uma nova simulação, clique em "Limpar dados" e preencha os campos e simule.
 
