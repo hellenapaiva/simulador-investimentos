@@ -2,12 +2,45 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: row;
-        
+    height: 100vh;
+
+    @media (max-width:900px){
+    display: flex;
+    height: auto;
+    flex-direction: column; 
+   
+    justify-content: center;
+         
+ 
+}
 `;
 
+export const WrapperGeneral = styled.div`
+    display: flex;
+
+@media (max-width: 900px){
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+    gap: 40px;         
+ 
+}
+`
 export const FormContainer = styled.form`
-    display:flex;    
+    display:flex;  
+    
+    @media (max-width: 900px){
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    
+         
+ 
+}
 `;
 
 export const ContainerRend = styled.div`
@@ -24,7 +57,8 @@ export const ContainerIndex = styled.div`
     flex-direction: column;
       width: 200px;
     gap: 15px;
-   
+
+ 
       
 `;
 export const Header = styled.div`
@@ -113,6 +147,8 @@ export const WrapResult = styled.div`
     display: flex;
     flex-direction: column;
     margin-left: 20px;
+
+    
     
 `;
 

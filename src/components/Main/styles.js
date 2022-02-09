@@ -7,30 +7,21 @@ export const Container = styled.div`
     padding: 0 50px;
    
 
-    
-    @media (max-width: 530px){  /* Responsive */       
-        display: flex;
-        background-color: #efefef
-        width: 100%;
-        
-       justify-content: center;
-       align-items: center;        
  
 }
+  
 
 `;
 
 export const ContainerSimulator = styled.div`
     display: flex;
-    gap: 24px;
+     
    
-
-    @media (max-width: 670px){
+    @media (max-width: 768px){
         display: flex;
-          
-        background-color: #efefef;
         width: 100%;       
-       align-items: center;
+        justify-content: center;
+        align-items: center;
         
  
 }

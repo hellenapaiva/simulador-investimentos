@@ -18,7 +18,8 @@ import {
     ButtonToggle,
     FormContainer,
     Error,
-    WrapResult
+    WrapResult,
+    WrapperGeneral
 } from './styles';
 
 import { api } from '../../services/api';
@@ -96,97 +97,100 @@ export default function Simulator() {
     return (
         <Container>
             <FormContainer onSubmit={handleSubmit(handleSimulate)}>
-                <ContainerRend>
-                    <ContainerSub>
-                        Rendimentos
-                        <RiErrorWarningLine size={20} color="#545454" />
-                    </ContainerSub>
-                    <ContainerButtons>
-                        {typesRend.map((type) => (
-                            <ButtonToggle active={activeRend === type.value} onClick={() => setActiveRend(type.value)} >
-                                {type.label}
-                            </ButtonToggle>
+                <WrapperGeneral>
+                    <ContainerRend>
+                        <ContainerSub>
+                            Rendimentos
+                            <RiErrorWarningLine size={20} color="#545454" />
+                        </ContainerSub>
+                        <ContainerButtons>
+                            {typesRend.map((type) => (
+                                <ButtonToggle active={activeRend === type.value} onClick={() => setActiveRend(type.value)} >
+                                    {type.label}
+                                </ButtonToggle>
+                            ))}
+                        </ContainerButtons>
+                        <label>
+                            Aporte Inicial
+                        </label>
+                        <Input
+                            name="initialAporte"
+                            {...register('initialAporte')}
+                            value={initialContribution}
+                            onChange={(e) => setInitialContribution(e.target.value)}
+                        />
+                        <Error>{errors.initialAporte?.type === 'required' && "O prazo não pode ser vazio"}</Error>
+                        <Error>{errors.initialAporte?.type === 'typeError' && "O prazo deve ser um número"}</Error>
+                        <label>
+                            Prazo (em meses)
+                        </label>
+                        <Input
+                            name="deadline"
+                            {...register('deadline')}
+                            value={deadline}
+                            onChange={(e) => setDeadline(e.target.value)}
+                        />
+                        <Error>{errors.deadline?.type === 'required' && "O prazo não pode ser vazio"}</Error>
+                        <Error>{errors.deadline?.type === 'typeError' && "O prazo deve ser um número"}</Error>
+                        <label>
+                            IPCA (ao ano)
+                        </label>
+                        {indicadores.filter(value => (value.nome === 'ipca')).map(value => (
+                            <Span>{value.valor}%</Span>
                         ))}
-                    </ContainerButtons>
-                    <label>
-                        Aporte Inicial
-                    </label>
-                    <Input
-                        name="initialAporte"
-                        {...register('initialAporte')}
-                        value={initialContribution}
-                        onChange={(e) => setInitialContribution(e.target.value)}
-                    />
-                    <Error>{errors.initialAporte?.type === 'required' && "O prazo não pode ser vazio"}</Error>
-                    <Error>{errors.initialAporte?.type === 'typeError' && "O prazo deve ser um número"}</Error>
-                    <label>
-                        Prazo (em meses)
-                    </label>
-                    <Input
-                        name="deadline"
-                        {...register('deadline')}
-                        value={deadline}
-                        onChange={(e) => setDeadline(e.target.value)}
-                    />
-                    <Error>{errors.deadline?.type === 'required' && "O prazo não pode ser vazio"}</Error>
-                    <Error>{errors.deadline?.type === 'typeError' && "O prazo deve ser um número"}</Error>
-                    <label>
-                        IPCA (ao ano)
-                    </label>
-                    {indicadores.filter(value => (value.nome === 'ipca')).map(value => (
-                        <Span>{value.valor}%</Span>
-                    ))}
-                    <ButtonClick type="submit"
-                        onClick={handleClear}
-                    >
-                        Limpar campos
-                    </ButtonClick>
-                </ContainerRend>
-                <ContainerIndex >
-                    <ContainerSub>
-                        Tipos de indexação
-                        <RiErrorWarningLine size={20} color="#545454" />
-                    </ContainerSub>
-                    <ContainerButtons>
-                        {typesIndex.map((type) => (
-                            <ButtonToggle active={activeIndex === type.value} onClick={() => setActiveIndex(type.value)} >
-                                {type.label}
-                            </ButtonToggle>
-                        ))}
-                    </ContainerButtons>
-                    <label>
-                        Aporte Mensal
-                    </label>
-                    <Input
-                        name="monthly"
-                        {...register('monthly')}
-                        value={monthContribution}
-                        onChange={(e) => setMonthContribution(e.target.value)}
+                        <ButtonClick type="submit"
+                            onClick={handleClear}
+                        >
+                            Limpar campos
+                        </ButtonClick>
+                    </ContainerRend>
+                    <ContainerIndex >
+                        <ContainerSub>
+                            Tipos de indexação
+                            <RiErrorWarningLine size={20} color="#545454" />
+                        </ContainerSub>
+                        <ContainerButtons>
+                            {typesIndex.map((type) => (
+                                <ButtonToggle active={activeIndex === type.value} onClick={() => setActiveIndex(type.value)} >
+                                    {type.label}
+                                </ButtonToggle>
+                            ))}
+                        </ContainerButtons>
+                        <label>
+                            Aporte Mensal
+                        </label>
+                        <Input
+                            name="monthly"
+                            {...register('monthly')}
+                            value={monthContribution}
+                            onChange={(e) => setMonthContribution(e.target.value)}
 
-                    />
-                    <Error>{errors.initialAporte?.type === 'required' && "O aporte não pode ser vazio"}</Error>
-                    <Error>{errors.initialAporte?.type === 'typeError' && "O aporte deve ser um número"}</Error>
-                    <label>
-                        Rentabilidade
-                    </label>
-                    <Input
-                        name="profitability"
-                        {...register('profitability')}
-                        value={profitability}
-                        onChange={(e) => setProfitability(e.target.value)}
-                    />
-                    <Error>{errors.initialAporte?.type === 'required' && "A rentabilidade não pode ser vazio"}</Error>
-                    <Error>{errors.initialAporte?.type === 'typeError' && "A rentabilidade deve ser um número"}</Error>
-                    <label>
-                        CDI (ao ano)
-                    </label>
-                    {indicadores.filter(value => (value.nome === 'cdi')).map(value => (
-                        <Span>{value.valor}%</Span>
-                    ))}
-                    <ButtonSimular type="submit">
-                        Simular
-                    </ButtonSimular>
-                </ContainerIndex>
+                        />
+                        <Error>{errors.initialAporte?.type === 'required' && "O aporte não pode ser vazio"}</Error>
+                        <Error>{errors.initialAporte?.type === 'typeError' && "O aporte deve ser um número"}</Error>
+                        <label>
+                            Rentabilidade
+                        </label>
+                        <Input
+                            name="profitability"
+                            {...register('profitability')}
+                            value={profitability}
+                            onChange={(e) => setProfitability(e.target.value)}
+                        />
+                        <Error>{errors.initialAporte?.type === 'required' && "A rentabilidade não pode ser vazio"}</Error>
+                        <Error>{errors.initialAporte?.type === 'typeError' && "A rentabilidade deve ser um número"}</Error>
+                        <label>
+                            CDI (ao ano)
+                        </label>
+                        {indicadores.filter(value => (value.nome === 'cdi')).map(value => (
+                            <Span>{value.valor}%</Span>
+                        ))}
+                        <ButtonSimular type="submit">
+                            Simular
+                        </ButtonSimular>
+                    </ContainerIndex>
+
+                </WrapperGeneral>
             </FormContainer>
             {showResult && (
                 <WrapResult>

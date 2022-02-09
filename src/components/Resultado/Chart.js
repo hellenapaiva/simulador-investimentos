@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from "react-apexcharts";
+import { ContainerChart } from './styles';
 
 export default function Graph(props) {
 
@@ -18,6 +19,7 @@ export default function Graph(props) {
         plotOptions: {
             bar: {
                 horizontal: false,
+
             },
         },
         stroke: {
@@ -67,13 +69,16 @@ export default function Graph(props) {
     ]
 
     return (
-        <Chart
-            options={options}
-            type="bar"
-            series={series}
-            height={500}
-            width={1130}
-        />
+        <ContainerChart>
+
+            <Chart
+                options={options}
+                type="bar"
+                height="300"
+                series={series}
+
+            />
+        </ContainerChart>
 
     );
 }
